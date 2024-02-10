@@ -1,0 +1,14 @@
+models:
+  - model: Q-bert/Mamba-130M
+    parameters:
+      density: [1, 0.7, 0.1] # density gradient
+      weight: 1.0
+  - model: Q-bert/Mamba-130M
+    parameters:
+      density: 0.5
+      weight: [0, 0.3, 0.7, 1] # weight gradient
+merge_method: ties
+base_model: Q-bert/Mamba-130M
+parameters:
+  normalize: true
+  int8_mask: false

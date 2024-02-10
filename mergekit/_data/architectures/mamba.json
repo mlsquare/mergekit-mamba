@@ -1,0 +1,39 @@
+{
+    "model_type": "mamba",
+    "architectures": [
+        "MambaForCausalLM"
+    ],
+    "pre_weights": [
+        {
+            "name": "model.embedding.weight",
+            "is_embed": true
+        }
+    ],
+    "post_weights": [
+        {
+            "name": "model.norm_f.weight"
+        },
+        {
+            "name": "lm_head.weight",
+            "is_embed": true
+        }
+    ],
+    "num_layers_config_key": "n_layer",
+    "layer_templates": {
+        "weights": [
+            {
+                "name": "model.layers.${layer_index}.in_proj.weight"
+            },
+            {
+                "name": "model.layers.${layer_index}.x_proj.weight"
+            },
+            {
+                "name": "model.layers.${layer_index}.dt_proj.weight"
+            },
+            {
+                "name": "model.layers.${layer_index}.out_proj.weight"
+            }
+          
+        ]
+    }
+}

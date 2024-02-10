@@ -1,0 +1,21 @@
+slices:
+  - sources:
+      - model: Q-bert/Mamba-130M
+        layer_range: [0, 10]
+      - model: Q-bert/Mamba-130M
+        layer_range: [0, 10]
+# or, the equivalent models: syntax:
+# models:
+#   - model: psmathur/orca_mini_v3_13b
+#   - model: garage-bAInd/Platypus2-13B
+merge_method: slerp
+base_model: Q-bert/Mamba-130M
+parameters:
+  t:
+    - filter: x_proj
+      value: [0, 0.5, 0.3, 0.7, 1]
+    - filter: in_proj
+      value: [1, 0.5, 0.7, 0.3, 0]
+    - filter: out_proj
+      value: [1, 0.5, 0.7, 0.3, 0]
+    - value: 0.5 # fallback for rest of tensors
